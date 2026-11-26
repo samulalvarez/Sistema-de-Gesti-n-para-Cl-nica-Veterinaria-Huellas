@@ -34,7 +34,7 @@ int main() {
         cin >> opcion;
 
         switch (opcion) {
-            case 1: cout << "Espere un momento...\n"; 
+            case 1: cout << "Espere dos minutos...\n"; 
                 
                 break;
             case 2: cout << "Listar...\n"; 
