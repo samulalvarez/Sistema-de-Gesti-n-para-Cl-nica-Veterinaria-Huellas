@@ -35,7 +35,7 @@ int main() {
 
         switch (opcion) {
             case 1: cout << "Espere un momento...\n"; 
-                this_thread::sleep_for(chrono::seconds(5)); //Espera de 5 segundos 
+                
                 break;
             case 2: cout << "Listar...\n"; 
                 this_thread::sleep_for(chrono::seconds(5)); 
