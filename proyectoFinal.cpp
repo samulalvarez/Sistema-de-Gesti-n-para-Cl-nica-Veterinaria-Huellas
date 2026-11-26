@@ -7,57 +7,95 @@
 
 using namespace std;
 
-void buscarMascota(const vector<int> &codigos, const vector<string> &nombres, const vector<string> &especies, const vector<string> &razas, const vector<int> &edades, const vector<string> &propietarios)
-{
-    int codigo;
-    cout << "Ingrese el código de la mascota a buscar: ";
-    cin >> codigo;
+void mostrarMascota(int i, const vector<int> &codigos, const vector<string> &nombres, const vector<string> &especies, const vector<string> &razas, const vector<int> &edades, const vector<string> &propietarios)
+{ 
+    cout << "Codigo: " << codigos[i] << endl;
+    cout << "Nombre: " << nombres[i] << endl;
+    cout << "Especie: " << especies[i] << endl;
+    cout << "Raza: " << razas[i] << endl;
+    cout << "Edad: " << edades[i] << endl;
+    cout << "Propietario: " << propietarios[i] << endl;
+}
 
+//Para buscar por campos tipo string
+void buscarPorTexto(const vector<string> &campo, const string &valor, const vector<int> &codigos, const vector<string> &nombres, const vector<string> &especies, const vector<string> &razas, const vector<int> &edades, const vector<string> &propietarios)
+{
     bool encontrado = false;
-    for (int i = 0; i < codigos.size(); ++i)
+    for (int i = 0; i < campo.size(); i++)
     {
-        if (codigos[i] == codigo)
+        if (campo[i] == valor)
         {
-            cout << "Codigo: " << codigos[i] << endl;
-            cout << "Nombre: " << nombres[i] << endl;
-            cout << "Especie: " << especies[i] << endl;
-            cout << "Raza: " << razas[i] << endl;
-            cout << "Edad: " << edades[i] << endl;
-            cout << "Propietario: " << propietarios[i] << endl;
+            mostrarMascota(i, codigos, nombres, especies, razas, edades, propietarios);
             encontrado = true;
-            break;
         }
     }
-
     if (!encontrado)
     {
-        cout << "Mascota no encontrada.\n";
+        cout << "No se encontraron mascotas.\n";
     }
 }
 
+// Para buscar por campos numericos
+void buscarPorNumero(const vector<int> &campo, int valor, const vector<int> &codigos, const vector<string> &nombres, const vector<string> &especies, const vector<string> &razas, const vector<int> &edades, const vector<string> &propietarios)
+{
+    bool encontrado = false;
+    for (int i = 0; i < campo.size(); i++)
+    {
+        if (campo[i] == valor)
+        {
+            mostrarMascota(i, codigos, nombres, especies, razas, edades, propietarios);
+            encontrado = true;
+        }
+    }
+    if (!encontrado)
+    {
+        cout << "No se encontraron mascotas.\n";
+    }
+}
+
+
+
 void menuBusqueda(const vector<int> &codigos, const vector<string> &nombres, const vector<string> &especies, const vector<string> &razas, const vector<int> &edades, const vector<string> &propietarios)
 {
-    int menuBusqueda;
-    cin >> menuBusqueda;
-    switch (menuBusqueda)
+    int numero;
+    string texto;
+    int opcion;
+
+    cin >> opcion;
+    cin.ignore();
+    
+
+    switch (opcion)
     {
     case 1:
-        buscarMascota(codigos, nombres, especies, razas, edades, propietarios);
+        cout << "Ingrese el codigo de la mascota" << endl;
+        cin >> numero;
+        buscarPorNumero(codigos, numero, codigos, nombres, especies, razas, edades, propietarios);
         break;
     case 2:
-        cout << "2. Buscar por nombre" << endl;
+        cout << "Ingrese el nombre de la mascota" << endl;
+        getline(cin, texto);
+        buscarPorTexto(nombres, texto,codigos, nombres, especies, razas, edades, propietarios );
         break;
     case 3:
-        cout << "3. Buscar por especie" << endl;
+        cout << "Ingrese la especie de la mascota" << endl;
+        getline(cin, texto);
+        buscarPorTexto(especies, texto,codigos, nombres, especies, razas, edades, propietarios );
         break;
     case 4:
-        cout << "4. Buscar por raza" << endl;
+        cout << "Ingrese la raza de la mascota" << endl;
+        getline(cin, texto);
+        buscarPorTexto(razas, texto,codigos, nombres, especies, razas, edades, propietarios );
         break;
     case 5:
-        cout << "5. Buscar por edad" << endl;
+        cout << "Ingrese la edad de la mascota" << endl;
+        cin >> numero;
+        buscarPorNumero(edades, numero, codigos, nombres, especies, razas, edades, propietarios);
         break;
     case 6:
-        cout << "6. Buscar por propietario" << endl;
+        cout << "Ingrese el nombre del propeitario de la mascota" << endl;
+        getline(cin, texto);
+        buscarPorTexto(propietarios, texto,codigos, nombres, especies, razas, edades, propietarios );
         break;
     default:
         cout << "Opción inválida" << endl;
