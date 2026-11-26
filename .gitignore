@@ -1,0 +1,10 @@
+# Ejecutables y librerías
+*.exe
+*.dll
+*.lib
+
+# Archivos intermedios y de depuración de MSVC
+*.obj
+*.pdb
+*.ilk
+*.exp
