@@ -93,12 +93,12 @@ int main()
               {
               for (int i=0; i < totalMascotas; i++ )
               {  
-               cout << "Mascota # " << i + 1 << endl; 
-               cout << "Código:  " << codigos[i] <<endl;
-               cout << "Nombre:  " << nombres[i] <<endl;
+               cout << "Mascota # "  << i + 1 << endl; 
+               cout << "Código:  "   << codigos[i] <<endl;
+               cout << "Nombre:  "   << nombres[i] <<endl;
                cout << "Especies:  " << especies[i] <<endl;  
-               cout << "Raza :  " << razas[i] <<endl;  
-               cout << "Edad :  " << edades[i] <<endl;  
+               cout << "Raza :  "    << razas[i] <<endl;  
+               cout << "Edad :  "  << edades[i] <<endl;  
                cout << "Propietario:  " << propietarios[i] <<endl;  
                cout << "-----------------------------------" <<endl;
               }
