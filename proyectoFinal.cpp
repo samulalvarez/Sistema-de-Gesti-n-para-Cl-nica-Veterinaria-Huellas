@@ -140,7 +140,8 @@ void menuBusqueda(const vector<int> &codigos, const vector<string> &nombres, con
                 cout << "====================================" << endl;
             break;
 
-        
+        case 0:
+            break;
             
 
         default:
