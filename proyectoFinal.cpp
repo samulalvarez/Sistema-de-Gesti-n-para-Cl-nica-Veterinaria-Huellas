@@ -7,6 +7,34 @@
 
 using namespace std;
 
+void menuModificar(){
+    int opcionModificar ;
+    
+    do
+    {
+        cout << "1. Modificar Nombre de la Mascota" << endl;
+        cout << "2. Modificar edad de la Mascota" << endl;
+        cout << "3. Modificar Nombre del propietario de la Mascota" << endl;
+        cout << "0. Volver al Menu Principal" << endl;
+
+        cin >> opcionModificar;
+
+        switch (opcionModificar)
+        {
+        case 1:
+            cout << "Opcion invalida\n";
+            break;
+        
+        default:
+
+            cout << "Opcion invalida\n";
+            break;
+        }
+
+    } while (opcionModificar != 0);
+}
+
+
 int main()
 {
 
@@ -90,7 +118,13 @@ int main()
         case 4:
             cout << "Modificar...\n";
             this_thread::sleep_for(chrono::seconds(5));
+
+            cout << "Que informacion desea modificar?" << endl ;
+            menuModificar();
+
             break;
+
+
         case 5:
             cout << "Eliminar...\n";
             this_thread::sleep_for(chrono::seconds(5));
