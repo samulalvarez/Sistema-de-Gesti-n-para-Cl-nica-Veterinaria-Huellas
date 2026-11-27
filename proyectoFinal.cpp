@@ -7,6 +7,66 @@
 
 using namespace std;
 
+int buscarPorCodigo (const vector<int>& codigos, int codigoBuscado)
+{
+    for (int i = 0; i < codigos.size(); i++)
+    { 
+        if (codigos[i] == codigoBuscado) 
+        { 
+            return i; 
+        }    
+    } 
+    return -1; 
+}    
+
+void eliminarMascota(vector<int>& codigos, vector<string>& nombres,vector<string>& especies, vector<string>& razas,vector<int>& edades, vector<string>& propietarios) 
+{ 
+   if (codigos.empty()) { 
+            cout << "No hay mascotas registradas." << endl; 
+            return;
+           }
+         
+           int codigoEliminar; 
+           cout<< "Ingrese codigo de la mascota a eliminar: ";
+           cin >> codigoEliminar;
+
+         //se busca la posicion de manera lineal 
+           int pos = buscarPorCodigo(codigos, codigoEliminar);
+
+            if (pos == -1 ) { 
+               cout << "La mascota no esta registrada." << endl; 
+               return; 
+            } 
+
+           // confirmacion del proceso (RF-08).  
+            char confirmar; 
+            cout << "Se eliminara a " <<nombres[pos] << " Desea continuar? (s/n): ";
+            cin >> confirmar; 
+
+            if (confirmar != 's' && confirmar != 'S') { 
+                cout << "Proceso cancelado. " << endl;
+                return; 
+            }
+
+            for (int i = pos; i < codigos.size() -1; i++ ) { 
+                codigos [i]      = codigos[i + 1];  
+                nombres [i]      = nombres[i + 1];  
+                especies[i]      = especies[i + 1];  
+                razas [i]        = razas[i + 1];  
+                edades [i]       = edades[i + 1];  
+                propietarios [i] = propietarios[i + 1];  
+            }
+
+            codigos.pop_back();
+            nombres.pop_back();
+            especies.pop_back();
+            razas.pop_back();
+            edades.pop_back();
+            propietarios.pop_back();
+           
+            cout << "Mascota eliminada correctamente." << endl;
+        }
+
 int main()
 {
 
@@ -93,66 +153,11 @@ int main()
             break;
 
 
-
-
         case 5: {   /*Parte 5: Modificar y eliminar Requerimientos: RF-05, RF-06*/
             cout << "Eliminar...\n";
             this_thread::sleep_for(chrono::seconds(5));
 
-             if (codigos.empty()) { 
-            cout << "No hay mascotas registradas." << endl; 
-            break;
-           }
-         
-           int codigoEliminar; 
-           cout<< "Ingrese codigo de la mascota a eliminar: ";
-           cin >> codigoEliminar;
-
-         //se busca la posicion de manera lineal 
-           int pos = -1;
-           for (int i = 0 ; i < codigos.size(); i++ ) { 
-              if (codigos[i] == codigoEliminar) { 
-                pos = i; 
-                break; 
-              }
-              
-           }
-
-           // confirmacion del proceso (RF-08).  
-            char confirmar; 
-            cout << "Se eliminara a " <<nombres[pos] << " Desea continuar? (s/n): ";
-            cin >> confirmar; 
-
-            if (confirmar != 's' && confirmar != 'S') { 
-                cout << "Proceso cancelado. " << endl;
-                break; 
-            }
-
-
-           if (pos == -1 ) { 
-               cout << "La mascota no esta registrada." << endl; 
-               break; 
-            } 
-
-            for (int i = pos; i < codigos.size() -1; i++ ) { 
-                codigos [i]      = codigos[i + 1];  
-                nombres [i]      = nombres[i + 1];  
-                especies[i]      = especies[i + 1];  
-                razas [i]        = razas[i + 1];  
-                edades [i]       = edades[i + 1];  
-                propietarios [i] = propietarios[i + 1];  
-            }
-
-            codigos.pop_back();
-            nombres.pop_back();
-            especies.pop_back();
-            razas.pop_back();
-            edades.pop_back();
-            propietarios.pop_back();
-            
-            cout << "Mascota eliminada." <<endl; 
-
-          break;
+            eliminarMascota(codigos, nombres, especies, razas, edades, propietarios);
          }
 
 
