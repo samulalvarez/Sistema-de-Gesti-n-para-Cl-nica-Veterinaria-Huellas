@@ -163,7 +163,9 @@ void menuModificar( int codigoBuscarModificar, vector<string> &nombres,  vector<
             cout << "Cambio de Nombre Exitoso!" << endl;
             this_thread::sleep_for(chrono::seconds(2));
             break;
-
+        
+        case 0:
+            break;
            
         default:
 
