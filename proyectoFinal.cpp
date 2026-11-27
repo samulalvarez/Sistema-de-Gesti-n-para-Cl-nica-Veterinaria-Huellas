@@ -79,7 +79,7 @@ int main()
         } 
 
         case 2:{
-           //*Parte 3: Listar mascotas Requerimientos: RF-03*/
+           //Parte 3: Listar mascotas Requerimientos: RF-03
 
             cout << "Listar...\n";
             this_thread::sleep_for(chrono::seconds(5));
