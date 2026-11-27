@@ -74,15 +74,42 @@ int main()
 
             cout << "Registro exitoso!\n";
 
-            break;
+            break; 
 
-            
+        } 
 
-        }
-        case 2:
+        case 2:{
+           //*Parte 3: Listar mascotas Requerimientos: RF-03*/
+
             cout << "Listar...\n";
             this_thread::sleep_for(chrono::seconds(5));
-            break;
+            
+             int totalMascotas = codigos.size();
+              if (totalMascotas == 0)
+              { 
+               cout << "No hay mascotas registradas " <<endl; 
+              } 
+               else 
+              {
+              for (int i=0; i < totalMascotas; i++ )
+              {  
+               cout << "Mascota # " << i + 1 << endl; 
+               cout << "Código:  " << codigos[i] <<endl;
+               cout << "Nombre:  " << nombres[i] <<endl;
+               cout << "Especies:  " << especies[i] <<endl;  
+               cout << "Raza :  " << razas[i] <<endl;  
+               cout << "Edad :  " << edades[i] <<endl;  
+               cout << "Propietario:  " << propietarios[i] <<endl;  
+               cout << "-----------------------------------" <<endl;
+              }
+                cout <<"Lista de mascotas: " << totalMascotas <<endl;
+             } 
+            break; 
+
+          } 
+
+
+    
         case 3:
             cout << "Buscar...\n";
             this_thread::sleep_for(chrono::seconds(5));
@@ -113,6 +140,8 @@ int main()
 }
 
 /*Parte 2: Datos y registrar mascota Requerimientos: RF-02*/
+
+
 
 /*Parte 3: Listar mascotas Requerimientos: RF-03*/
 
