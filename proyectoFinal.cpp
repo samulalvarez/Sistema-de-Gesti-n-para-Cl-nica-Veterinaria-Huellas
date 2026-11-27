@@ -134,6 +134,7 @@ void menuModificar( const vector<int> &codigos,  vector<string> &nombres, const 
         switch (opcionModificar)
         {
         case 1:
+            cout << "Ingrese el nombre de la mascota";
             getline(cin, texto);
             buscarPorTexto(nombres, texto, codigos, nombres, especies, razas, edades, propietarios);
             break;
