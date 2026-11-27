@@ -104,14 +104,14 @@ int main()
             break;
            }
          
-           int codigo; 
+           int codigoEliminar; 
            cout<< "Ingrese codigo de la mascota a eliminar: ";
-           cin >> codigo;
+           cin >> codigoEliminar;
 
          //se busca la posicion de manera lineal 
            int pos = -1;
            for (int i = 0 ; i < codigos.size(); i++ ) { 
-              if (codigos[i] == codigo) { 
+              if (codigos[i] == codigoEliminar) { 
                 pos = i; 
                 break; 
               }
