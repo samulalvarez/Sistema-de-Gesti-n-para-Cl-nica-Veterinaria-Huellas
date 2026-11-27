@@ -34,8 +34,9 @@ int  buscarPorTexto(const vector<string> &campo, const string &valor, const vect
     if (!encontrado)
     {
         cout << "No se encontraron mascotas.\n";
-        return -1;
+        
     }
+    return -1;
 }
 
 // Para buscar por campos numericos
@@ -53,8 +54,9 @@ int buscarPorNumero(const vector<int> &campo, int valor, const vector<int> &codi
     if (!encontrado)
     {
         cout << "No se encontraron mascotas.\n";
-        return -1;
+        
     }
+    return -1;
 }
 
 void menuBusqueda(const vector<int> &codigos, const vector<string> &nombres, const vector<string> &especies, const vector<string> &razas, const vector<int> &edades, const vector<string> &propietarios)
@@ -70,14 +72,15 @@ void menuBusqueda(const vector<int> &codigos, const vector<string> &nombres, con
     switch (opcion)
     {
     case 1:
-        cout << "Ingrese el codigo de la mascota" << endl;
+        cout << "Ingrese el codigo de la mascota " << endl;
         cin >> numero;
+        cin.ignore();
         indiceBusqueda = buscarPorNumero(codigos, numero, codigos, nombres, especies, razas, edades, propietarios);
         if (indiceBusqueda != -1)
             mostrarMascota(indiceBusqueda, codigos, nombres, especies, razas, edades, propietarios);
         break;
     case 2:
-        cout << "Ingrese el nombre de la mascota" << endl;
+        cout << "Ingrese el nombre de la mascota " << endl;
         getline(cin, texto);
         indiceBusqueda = buscarPorTexto(nombres, texto, codigos, nombres, especies, razas, edades, propietarios);
         if (indiceBusqueda != -1)
@@ -100,6 +103,7 @@ void menuBusqueda(const vector<int> &codigos, const vector<string> &nombres, con
     case 5:
         cout << "Ingrese la edad de la mascota" << endl;
         cin >> numero;
+        cin.ignore();
         indiceBusqueda = buscarPorNumero(edades, numero, codigos, nombres, especies, razas, edades, propietarios);
         if (indiceBusqueda != -1)
             mostrarMascota(indiceBusqueda, codigos, nombres, especies, razas, edades, propietarios);
@@ -117,10 +121,13 @@ void menuBusqueda(const vector<int> &codigos, const vector<string> &nombres, con
 }
 
 
-void menuModificar( const vector<int> &codigos,  vector<string> &nombres, const vector<string> &especies, const vector<string> &razas,  vector<int> &edades,  vector<string> &propietarios)
+
+
+void menuModificar( int codigoBuscarModificar, vector<string> &nombres,  vector<int> &edades,  vector<string> &propietarios)
 {
     int opcionModificar;
-    string texto;
+    string nuevoNombre;
+    int nuevaEdad;
 
     do
     {
@@ -130,23 +137,45 @@ void menuModificar( const vector<int> &codigos,  vector<string> &nombres, const 
         cout << "0. Volver al Menu Principal" << endl;
 
         cin >> opcionModificar;
+        cin.ignore();
 
         switch (opcionModificar)
         {
         case 1:
-            cout << "Ingrese el nombre de la mascota";
-            getline(cin, texto);
-            buscarPorTexto(nombres, texto, codigos, nombres, especies, razas, edades, propietarios);
+            cout << "Ingrese el nuevo nombre: " ;
+            getline(cin, nuevoNombre);
+            nombres[codigoBuscarModificar] = nuevoNombre;
+            cout << "Cambio de Nombre Exitoso!" << endl;
+            this_thread::sleep_for(chrono::seconds(2));
+            break;
+        case 2:
+            cout <<"ingrese la nueva edad de la mascota: " ;
+            cin >> nuevaEdad;
+            cin.ignore();
+            edades[codigoBuscarModificar] = nuevaEdad;
+            cout << "Cambio de Edad Exitoso!" << endl;
+            this_thread::sleep_for(chrono::seconds(2));
+            break;
+        case 3: 
+            cout << "Ingrese el nuevo nombre del propietario: " ;
+            cin >> nuevoNombre;
+            propietarios[codigoBuscarModificar] = nuevoNombre;
+            cout << "Cambio de Nombre Exitoso!" << endl;
+            this_thread::sleep_for(chrono::seconds(2));
             break;
 
+           
         default:
 
-            cout << "Opcion invalida\n";
+            cout << "Opcion invalida\n" << endl;
             break;
         }
 
     } while (opcionModificar != 0);
 }
+
+
+
 
 int main()
 {
@@ -236,15 +265,22 @@ int main()
             cout << "Ingrese el metodo por el cual quieres buscar la mascota: \n";
             menuBusqueda(codigos, nombres, especies, razas, edades, propietarios);
             break;
-        case 4:
+        case 4:{
+            int codigoBuscarModificar;
+        
             cout << "Modificar...\n";
             this_thread::sleep_for(chrono::seconds(5));
+            cout << "Ingrese el codigo de la mascota a buscar" << endl;
+            cin >> codigoBuscarModificar;
+            cin.ignore();
+            codigoBuscarModificar = buscarPorNumero(codigos, codigoBuscarModificar, codigos, nombres, especies, razas, edades, propietarios);
 
-            cout << "Que informacion desea modificar?" << endl;
-            menuModificar(codigos, nombres, especies, razas, edades, propietarios);
-
+            if (codigoBuscarModificar != -1){
+                menuModificar( codigoBuscarModificar ,nombres, edades, propietarios);
+            }
+           
             break;
-
+        }
         case 5:
             cout << "Eliminar...\n";
             this_thread::sleep_for(chrono::seconds(5));
