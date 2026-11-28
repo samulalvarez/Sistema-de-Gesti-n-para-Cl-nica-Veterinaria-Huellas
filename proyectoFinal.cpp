@@ -6,6 +6,77 @@
 #include <vector>
 
 using namespace std;
+//FUNCION ESTADISTICAS
+void estadisticas(const vector<int>&edades,const vector<string>&especies,const vector<string>&nombres) 
+{
+    if (edades.empty())
+    {
+        cout << "No hay mascotas registradas para mostrar estadísticas." << endl;
+        return;
+
+    }
+    int total = edades.size();
+    int sumaEdades = 0;
+    int menor = 0;
+    int mayor = 0;
+
+    //Se recorren las edades 
+    for (int i = 0; i < total; i++)
+    {
+        sumaEdades += edades[i];
+        if (edades[i] < edades[menor])
+        {
+            menor = i;
+        }
+        if (edades[i] > edades[mayor])
+        {
+            mayor = i;
+        }  
+    } 
+    double promedio = (double)sumaEdades / total;
+    cout << "Estadísticas de las mascotas registradas:" << endl;
+    cout << "Total de mascotas registradas: " << total << endl;
+    cout << "Edad promedio: " << promedio << endl;
+
+    cout << "Mascota más joven: " << nombres[menor] << " (Edad: " << edades[menor] << ")" << endl;
+    cout << "Mascota mayor : " << nombres[mayor] << " (Edad: " << edades[mayor] << ")" << endl;
+    
+    // CONTARLAS POR ESPECIE y se valida que no se repitan
+
+    cout <<"Mascotas por especie: " << endl;
+
+    for (int i = 0; i < total; i++)
+    {
+        bool repetida = false; 
+
+        for (int j = 0; j < i; j++)
+        {
+            if (especies[i] == especies[j])
+            {
+                repetida = true;
+                
+            }
+        }
+        
+        if (repetida == false) 
+        {
+
+            int contador = 0;
+            for (int j = 0; j < total; j++)
+            {
+                if (especies[i] == especies[j])
+                {
+                    contador++;
+                }
+            }
+
+        cout << especies[i] << ": " << contador << (contador == 1 ? " mascota" : " mascotas") << endl;
+    
+        }
+    }
+
+}    
+
 
 int main()
 {
@@ -98,6 +169,7 @@ int main()
         case 6:
             cout << "Estadisticas...\n";
             this_thread::sleep_for(chrono::seconds(5));
+            estadisticas(edades, especies, nombres);
             break;
         case 0:
             cout << "Hasta pronto\n";
