@@ -301,6 +301,7 @@ int main()
         
             cout << "Modificar...\n";
             this_thread::sleep_for(chrono::seconds(5));
+            cout << endl;
             cout << "Ingrese el codigo de la mascota a buscar" << endl;
             cin >> codigoBuscarModificar;
             cin.ignore();
