@@ -17,6 +17,10 @@ void mostrarMascota(int i, const vector<int> &codigos, const vector<string> &nom
     cout << "Raza: " << razas[i] << endl;
     cout << "Edad: " << edades[i] << endl;
     cout << "Propietario: " << propietarios[i] << endl;
+    cout << endl;
+    this_thread::sleep_for(chrono::seconds(1));
+    cout << "Busqueda Realizada con Exito!" << endl;
+    cout << endl;
 }
 
 // Para buscar por campos tipo string
@@ -54,7 +58,7 @@ int buscarPorNumero(const vector<int> &campo, int valor, const vector<int> &codi
     if (!encontrado)
     {
         cout << "No se encontraron mascotas.\n";
-        
+        cout << "====================================" << endl;
     }
     return -1;
 }
@@ -66,58 +70,88 @@ void menuBusqueda(const vector<int> &codigos, const vector<string> &nombres, con
     int opcion;
     int indiceBusqueda;
 
-    cin >> opcion;
-    cin.ignore();
+    
 
-    switch (opcion)
-    {
-    case 1:
-        cout << "Ingrese el codigo de la mascota " << endl;
-        cin >> numero;
+    do{   
+        
+        cout << "1. Buscar por código\n";
+        cout << "2. Buscar por nombre\n";
+        cout << "3. Buscar por especie\n";
+        cout << "4. Buscar por raza\n";
+        cout << "5. Buscar por edad\n";
+        cout << "6. Buscar por propietario\n";
+        cout << "0. Salir al Menu Principal\n";
+
+        cin >> opcion;
         cin.ignore();
-        indiceBusqueda = buscarPorNumero(codigos, numero, codigos, nombres, especies, razas, edades, propietarios);
-        if (indiceBusqueda != -1)
-            mostrarMascota(indiceBusqueda, codigos, nombres, especies, razas, edades, propietarios);
-        break;
-    case 2:
-        cout << "Ingrese el nombre de la mascota " << endl;
-        getline(cin, texto);
-        indiceBusqueda = buscarPorTexto(nombres, texto, codigos, nombres, especies, razas, edades, propietarios);
-        if (indiceBusqueda != -1)
-            mostrarMascota(indiceBusqueda, codigos, nombres, especies, razas, edades, propietarios);
-        break;
-    case 3:
-        cout << "Ingrese la especie de la mascota" << endl;
-        getline(cin, texto);
-        indiceBusqueda = buscarPorTexto(especies, texto, codigos, nombres, especies, razas, edades, propietarios);
-        if (indiceBusqueda != -1)
-            mostrarMascota(indiceBusqueda, codigos, nombres, especies, razas, edades, propietarios);
-        break;
-    case 4:
-        cout << "Ingrese la raza de la mascota" << endl;
-        getline(cin, texto);
-        indiceBusqueda = buscarPorTexto(razas, texto, codigos, nombres, especies, razas, edades, propietarios);
-        if (indiceBusqueda != -1)
-            mostrarMascota(indiceBusqueda, codigos, nombres, especies, razas, edades, propietarios);
-        break;
-    case 5:
-        cout << "Ingrese la edad de la mascota" << endl;
-        cin >> numero;
-        cin.ignore();
-        indiceBusqueda = buscarPorNumero(edades, numero, codigos, nombres, especies, razas, edades, propietarios);
-        if (indiceBusqueda != -1)
-            mostrarMascota(indiceBusqueda, codigos, nombres, especies, razas, edades, propietarios);
-        break;
-    case 6:
-        cout << "Ingrese el nombre del propeitario de la mascota" << endl;
-        getline(cin, texto);
-        indiceBusqueda = buscarPorTexto(propietarios, texto, codigos, nombres, especies, razas, edades, propietarios);
-        if (indiceBusqueda != -1)
-            mostrarMascota(indiceBusqueda, codigos, nombres, especies, razas, edades, propietarios);
-        break;
-    default:
-        cout << "Opción inválida" << endl;
-    }
+
+        switch (opcion){
+        case 1:
+            cout << "Ingrese el codigo de la mascota: " ;
+            cin >> numero;
+            this_thread::sleep_for(chrono::seconds(2));
+            indiceBusqueda = buscarPorNumero(codigos, numero, codigos, nombres, especies, razas, edades, propietarios);
+            if (indiceBusqueda != -1)
+                mostrarMascota(indiceBusqueda, codigos, nombres, especies, razas, edades, propietarios);
+                cout << "====================================" << endl;
+            break;
+        case 2:
+            cout << "Ingrese el nombre de la mascota: " ;
+            getline(cin, texto);
+            this_thread::sleep_for(chrono::seconds(2));
+            indiceBusqueda = buscarPorTexto(nombres, texto, codigos, nombres, especies, razas, edades, propietarios);
+            if (indiceBusqueda != -1)
+                mostrarMascota(indiceBusqueda, codigos, nombres, especies, razas, edades, propietarios);
+                cout << "====================================" << endl;
+            break;
+        case 3:
+            cout << "Ingrese la especie de la mascota: ";
+            getline(cin, texto);
+            this_thread::sleep_for(chrono::seconds(2));
+            indiceBusqueda = buscarPorTexto(especies, texto, codigos, nombres, especies, razas, edades, propietarios);
+            if (indiceBusqueda != -1)
+                mostrarMascota(indiceBusqueda, codigos, nombres, especies, razas, edades, propietarios);
+                cout << "====================================" << endl;
+            break;
+        case 4:
+            cout << "Ingrese la raza de la mascota: ";
+            getline(cin, texto);
+            this_thread::sleep_for(chrono::seconds(2));
+            indiceBusqueda = buscarPorTexto(razas, texto, codigos, nombres, especies, razas, edades, propietarios);
+            if (indiceBusqueda != -1)
+                mostrarMascota(indiceBusqueda, codigos, nombres, especies, razas, edades, propietarios);
+                cout << "====================================" << endl;
+            break;
+        case 5:
+            cout << "Ingrese la edad de la mascota: ";
+            cin >> numero;
+            this_thread::sleep_for(chrono::seconds(2));
+            indiceBusqueda = buscarPorNumero(edades, numero, codigos, nombres, especies, razas, edades, propietarios);
+            if (indiceBusqueda != -1)
+                mostrarMascota(indiceBusqueda, codigos, nombres, especies, razas, edades, propietarios);
+                cout << "====================================" << endl;
+            break;
+        case 6:
+            cout << "Ingrese el nombre del propietario de la mascota: ";
+            getline(cin, texto);
+            this_thread::sleep_for(chrono::seconds(2));
+            indiceBusqueda = buscarPorTexto(propietarios, texto, codigos, nombres, especies, razas, edades, propietarios);
+            if (indiceBusqueda != -1)
+                mostrarMascota(indiceBusqueda, codigos, nombres, especies, razas, edades, propietarios);
+                cout << "====================================" << endl;
+            break;
+
+        case 0:
+            break;
+            
+
+        default:
+            cout << "Opción inválida" << endl;
+        }
+
+    } while (opcion !=0);
+    
+    
 }
 
 
@@ -258,12 +292,7 @@ int main()
         case 3:
             cout << "Buscar...\n";
             this_thread::sleep_for(chrono::seconds(5));
-            cout << "1. Buscar por código\n";
-            cout << "2. Buscar por nombre\n";
-            cout << "3. Buscar por especie\n";
-            cout << "4. Buscar por raza\n";
-            cout << "5. Buscar por edad\n";
-            cout << "6. Buscar por propietario\n";
+            cout << endl;
             cout << "Ingrese el metodo por el cual quieres buscar la mascota: \n";
             menuBusqueda(codigos, nombres, especies, razas, edades, propietarios);
             break;
